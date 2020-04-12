@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Best Books!
+        </h1>
+    </header>
+
+    <main>
+        <h2>Search by Title or Author</h2>
+
+        <form action="/form" method="post">
+            <div>
+                <input id="enterI" type="text" placeholder="Enter a title or author" name="enter">
+
+                <label class="titlel">Title<input class="title" name="radioType" type="radio" value="title">
+                </label>
+                <label class="titlel">Author<input class="title" name="radioType" type="radio" value="author"></label>
+
+                <button id="button" type="submit">Search the Google Books API</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
