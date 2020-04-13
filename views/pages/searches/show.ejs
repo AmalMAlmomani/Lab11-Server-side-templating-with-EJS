@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
-<body>
-    <header><h1>Search Results</h1></header>
-   <main>
-      <% search.forEach(result => { %>
-        <div>
-            <img src="<%= result.img %>">
-            <h2><%= result.title %></h2>
-            <h3><%= result.author %></h3>
-            <p><%= result.description %></p>
-        </div>
-    <%  }) %>
 
-</main> 
+<body>
+    <%- include('../header')%>
+    <header>
+        <h1 id="h1">Search Results</h1>
+    </header>
+    <main id="main">
+        <% search.forEach(result => { %>
+        <div id="div" >
+            <img id="img" src="<%= result.img %>">
+            <h2 id="h2"><%= result.title %></h2>
+            <h3 id="h3"><%= result.author %></h3>
+            <p id="p"><%= result.description %></p>
+        </div>
+        <%  }) %>
+    </main>
+    <%- include('../script')%>
 </body>
 
 </html>

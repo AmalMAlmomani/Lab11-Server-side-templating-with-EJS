@@ -1,5 +1,5 @@
-
-*{
+/* style for new.ejs */
+/* *{
     box-sizing: border-box;
     text-align: center;
 }
@@ -8,15 +8,9 @@ body {
     width: 480px;
     margin: 0 auto;
 
-}
-header{
-    text-align: left;
-    color: white;
-    font-size: x-large;
-    margin: 20px;
-}
+} */
 
-h2{
+#h2{
     text-align: center;
     color: white;
     background-color: rgb(58, 58, 58);
@@ -24,7 +18,7 @@ h2{
     width: 450px;
     padding: 15px;
 }
-form{
+#form{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -35,7 +29,7 @@ form{
     
 }
 
-div{
+#div{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
