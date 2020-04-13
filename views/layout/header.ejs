@@ -1,0 +1,20 @@
+<div class="mobile-container">
+    <div class="topnav">
+        <h1 class="active">Book App</h1>
+        <div id="myLinks">
+            <a href="/">Home</a>
+            <a href="searches/new">New</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myLinks");
+                if (x.style.display === "block") {
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            }
+        </script>
