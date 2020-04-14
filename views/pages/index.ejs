@@ -2,18 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/reset.css">
-    <!-- <link rel="stylesheet" href="styles/base.css"> -->
-    <link rel="stylesheet" href="/styles/modules.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Book List</title>
+
+    <%- include('./layout/head')%>
+    <link rel="stylesheet" href="styles/modules.css">
 </head>
 
 <body>
-    <%- include('./header')%>
-    <%- include('./script')%>
+
+
+    <header>
+        <%- include('./header')%>
+        <h1><%= book.length %>saved books </h1>
+    </header>
+
+    <main>
+
+        <% book.forEach( insert => { %>
+        <div>
+            <img src="<%= insert.image_url %>">
+            <h2><%= insert.title %></h2>
+            <h3><%= insert.author %></h3>
+            <p><%= insert.description %></p>
+            <p><%= insert.isbn %></p>
+            <p><%= insert.bookshelf %></p>
+            <a href="/books/<%= insert.id%"><button>View Details</button></a>
+
+</div>
+            <% }) %>
+      
+    </main>
+    <%- include('./footer')%>
 </body>
 
 </html>
