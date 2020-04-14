@@ -1,44 +1,39 @@
 'use strict';
+
 require('dotenv').config();
 const express = require('express');
 const pg = require('pg');
-const cors = require('cors');
-const superagent = require('superagent');
-
-// const request = require('request');
-const PORT = process.env.PORT || 4000;
 const app = express();
-//middlewares
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('./public'));
-//view engine
-app.set('view engine', 'ejs');
-app.use(express.json());
-app.use(cors());
+const PORT = process.env.PORT || 4000;
+const superagent = require('superagent');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => console.error(err));
 
+//middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('./public'));
 
-// Route
+//view engine
+app.set('view engine', 'ejs');
+//api's
 
+//Route
 app.get('/', getBooks);
-
-app.get('/book/:id', getOneBook);
-
+app.get('/books/:book_id', getOneBook);
+app.get('/add', getForm);
+app.post('/add', addBook);
 app.get('/searches/new', formRender);
 app.post('/searches', formNew );
 app.use('*', notFoundHandler);
-app.use(errorHandler);
 
 
 
 function getBooks(req, res) {
     const SQL = 'SELECT * FROM books;';
-    client
-        .query(SQL)
-        .then(results => {
-            res.render('pages/index', { book: results.rows });
+    client.query(SQL).then(results => {
+        console.log(results);
+            res.render('./pages/index', { books: results.rows });
         })
         .catch((err) => {
             errorHandler(err, req, res);
@@ -47,24 +42,32 @@ function getBooks(req, res) {
 }
 function getOneBook(req, res) {
     const SQL = 'SELECT * FROM books WHERE id=$1;';
-    const values = [req.params.id];
-    return client
-        .query(SQL, values)
-        .then(results => {
+    const values = [req.params.book_id];
+    client.query(SQL, values).then(results => {
             res.render('./pages/books/detail', { book: results.rows[0] });
         })
         .catch((err) => {
             errorHandler(err, req, res);
         });
 }
-
+function  getForm(req,res){
+    res.render('./pages/books/show');
+}
+function addBook(req,res){
+    const {image_url, title, author, description, isbn, bookshelf} = req.body;
+    const SQL = 'INSERT INTO books (image_url, title, author, description,isbn,bookshelf) VALUES($1, $2, $3 , $4, $5, $6 );'
+    const values = [image_url, title, author, description, isbn, bookshelf];
+    client.query(SQL,values).then(result =>{
+       res.redirect('/');  
+    }) .catch(err => {
+        errorHandler(err, req, res);
+    });
+   
+}
 
 function formRender(req, res) {
     res.render('./pages/searches/new');
 }
-//   app.get('/', (req, res) => {
-//     res.render('./pages/searches/new');
-//   })
 
 function formNew(req, res){
     const enterBook = req.body.enter;

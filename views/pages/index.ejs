@@ -3,35 +3,33 @@
 
 <head>
 
-    <%- include('./layout/head')%>
-    <link rel="stylesheet" href="styles/modules.css">
+    <%- include('../layout/head')%>
+    <!-- <link rel="stylesheet" href="styles/modules.css"> -->
 </head>
 
 <body>
 
 
     <header>
-        <%- include('./header')%>
-        <h1><%= book.length %>saved books </h1>
+        <%- include('../layout/header')%> 
     </header>
 
     <main>
-
-        <% book.forEach( insert => { %>
-        <div>
-            <img src="<%= insert.image_url %>">
-            <h2><%= insert.title %></h2>
-            <h3><%= insert.author %></h3>
-            <p><%= insert.description %></p>
-            <p><%= insert.isbn %></p>
-            <p><%= insert.bookshelf %></p>
-            <a href="/books/<%= insert.id%"><button>View Details</button></a>
-
-</div>
+        <section>
+            <% books.forEach( book => {%>
+            <article>
+                <img src="<%= book.image_url %>">
+                <h4>Tilte: <span><%= book.title %></span></h4>
+                <h3><%= book.author %></h3>
+                <p hidden><%= book.description %></p>
+                <p hidden><%= book.isbn %></p>
+                <p hidden><%= book.bookshelf %></p>
+                <a class="bookBtn" href="/books/<%= book.id%>">View Details</a>
+            </article>
             <% }) %>
-      
+      </section>
     </main>
-    <%- include('./footer')%>
+    <%- include('../layout/footer')%>
 </body>
 
 </html>
