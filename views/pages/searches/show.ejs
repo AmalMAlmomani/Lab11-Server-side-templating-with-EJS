@@ -19,11 +19,14 @@
            
                 <form action="/books" method="POST">
                     <div id="div">
-                        <input  name="image" value="<%= result.image_url%>" type="hidden"/><img id="img" src="<%= result.image_url %>">
-                        <input  name="title" value="<%= result.title%>" type="hidden"/><h2 id="h2"><%= result.title %></h2>
-                        <input  name="author" value="<%= result.author%>" type="hidden"/><h3 id="h3"><%= result.author %></h3>
-                        <input  name="description" value="<%= result.description%>" type="hidden"/><p id="p"><%= result.description %></p>
-                        <button type="submit">Select this book</button>
+                        <img id="img" src="<%= result.image_url %>">
+                        <h2 id="h2"><%= result.title %></h2>
+                        <h3 id="h3"><%= result.author %></h3>
+                        <p id="p"><%= result.description %></p>
+                        <button id="submitButton" type="submit">Select this book</button>
+                        
+
+
                     </div>
 
                 </form>

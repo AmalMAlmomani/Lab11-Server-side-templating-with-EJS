@@ -12,6 +12,7 @@
 
     <header>
         <%- include('../layout/header')%> 
+        <h2> <%= counter%> Saved Books</h2>
     </header>
 
     <main>
@@ -21,10 +22,7 @@
                 <img src="<%= book.image_url %>">
                 <h4>Tilte: <span><%= book.title %></span></h4>
                 <h3><%= book.author %></h3>
-                <p hidden><%= book.description %></p>
-                <p hidden><%= book.isbn %></p>
-                <p hidden><%= book.bookshelf %></p>
-                <a class="bookBtn" href="/books/<%= book.id%>">View Details</a>
+                <button type="submit"><a class="bookBtn" href="/books/<%= book.id%>">View Details</a></button>
             </article>
             <% }) %>
       </section>
