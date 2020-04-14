@@ -2,31 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/reset.css">
+    <%- include('../../layout/head')%>
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/modules.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+
 </head>
 
 <body>
-    <%- include('../header')%>
+    <%- include('../../layout/header')%>
     <header>
         <h1 id="h1">Search Results</h1>
     </header>
     <main id="main">
-        <% search.forEach(result => { %>
-        <div id="div" >
-            <img id="img" src="<%= result.img %>">
-            <h2 id="h2"><%= result.title %></h2>
-            <h3 id="h3"><%= result.author %></h3>
-            <p id="p"><%= result.description %></p>
-        </div>
-        <%  }) %>
+        
+            <% search.forEach(result => { %>
+           
+                <form action="/books" method="POST">
+                    <div id="div">
+                        <input  name="image" value="<%= result.image_url%>" type="hidden"/><img id="img" src="<%= result.image_url %>">
+                        <input  name="title" value="<%= result.title%>" type="hidden"/><h2 id="h2"><%= result.title %></h2>
+                        <input  name="author" value="<%= result.author%>" type="hidden"/><h3 id="h3"><%= result.author %></h3>
+                        <input  name="description" value="<%= result.description%>" type="hidden"/><p id="p"><%= result.description %></p>
+                        <button type="submit">Select this book</button>
+                    </div>
+
+                </form>
+            
+            <%  }) %>
+    
     </main>
-    <%- include('../script')%>
+    <%- include('../../layout/footer')%>
 </body>
 
 </html>
