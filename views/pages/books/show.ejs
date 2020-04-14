@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../layout/head')%>
+</head>
+
+<body>
+    <header>
+        <%- include('../../layout/header')%>
+    </header>
+    <main>
+        <section>
+            <h2 class="view-title">
+                Add a new book
+            </h2>
+            <form action="/add" method="POST">
+                <fieldset>
+                    <legend>Add a book</legend>
+                    <input type="image" name="image" placeholder="image" />
+                    <input type="text" name="title" placeholder="title" />
+                    <input type="text" name="author" placeholder="author" />
+                    <textarea name="description" placeholder="Description of the book" cols="30" row="10"></textarea>
+                    <input type="number" name="isbn" placeholder="Isbn" />
+                    <input type="text" name="bookshelf" placeholder="bookshelf"/>
+                    <button type="submit">Add this book</button>
+             
+
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+
+
+    <%- include('../../layout/footer')%>
+</body>
+
+</html>
