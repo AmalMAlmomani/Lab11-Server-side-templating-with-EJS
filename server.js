@@ -31,9 +31,11 @@ app.use('*', notFoundHandler);
 
 function getBooks(req, res) {
     const SQL = 'SELECT * FROM books;';
+    
     client.query(SQL).then(results => {
+        let count = results.rows.length;
         console.log(results);
-            res.render('./pages/index', { books: results.rows });
+            res.render('./pages/index', { books: results.rows, counter:count });
         })
         .catch((err) => {
             errorHandler(err, req, res);
