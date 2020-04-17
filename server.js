@@ -23,6 +23,8 @@ app.get('/', getBooks);
 app.get('/books/:book_id', getOneBook);
 app.get('/add', getForm);
 app.post('/add', addBook);
+app.put('/books/:book_id', updateBook);
+app.delete('/books/:book_id', deleteBook);
 app.get('/searches/new', formRender);
 app.post('/searches', formNew );
 app.use('*', notFoundHandler);
@@ -65,6 +67,33 @@ function addBook(req,res){
         errorHandler(err, req, res);
     });
    
+}
+
+
+function updateBook(req,res){
+    const {image_url, title, author, description, isbn} = req.body;
+    const SQL = 'UPDATE books SET image_url=$1, title=$2, author=$3, description=$4, isbn=$5, bookshelf=$6 WHERE id=$7';
+    const values =[
+        image_url,
+        title,
+        author,
+        description,
+        isbn,
+        req.params.book_id,
+    ];
+    client
+    .query(SQL, values)
+    .then((results) => res.redirect(`/books/${req.params.book_id}`))
+    .catch(err =>  errorHandler(err, req, res));
+}
+
+function deleteBook(req, res) {
+    const SQL = 'DELETE FROM books WHERE id=$1';
+    const values = [req.params.book_id];
+    client
+      .query(SQL, values)
+      .then((results) => res.redirect('/'))
+      .catch((err) => errorHandler(err, req, res));
 }
 
 function formRender(req, res) {
